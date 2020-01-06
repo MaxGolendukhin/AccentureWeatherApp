@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.golendukhin.accentureweatherapp.details.DetailFragment">
+
+    <data>
+        <variable
+            name="viewModel"
+            type="com.golendukhin.accentureweatherapp.details.DetailViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            android:layout_marginLeft="36dp"
+            android:layout_marginTop="8dp"
+            android:text="Riga"
+            android:textSize="36sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/date_title"
+            tools:text="Riga" />
+
+        <TextView
+            android:id="@+id/temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+            android:textSize="76sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/city"
+            app:temperatureFormatted="@{viewModel.weather.temperatureCelsius}"
+            tools:text="24\u00B0 C" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:localDateTimeFormatted="@{viewModel.weather}"
+            tools:text="4 Jan 2020 18:23:25" />
+
+        <TextView
+            android:id="@+id/date_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="4dp"
+            android:layout_marginRight="4dp"
+            android:text="@string/last_updated"
+            app:layout_constraintEnd_toStartOf="@+id/date"
+            app:layout_constraintTop_toTopOf="@+id/date" />
+
+        <TextView
+            android:id="@+id/min_temperature_title"
+            style="@style/text_style_regular"
+            android:layout_marginStart="24dp"
+            android:layout_marginLeft="24dp"
+            android:layout_marginTop="24dp"
+            android:text="@string/min"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/temperature" />
+
+        <TextView
+            android:id="@+id/min_temperature"
+            style="@style/text_style_regular"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/min_temperature_title"
+            app:layout_constraintStart_toEndOf="@+id/min_temperature_title"
+            app:temperatureFormatted="@{viewModel.weather.temperatureMin}"
+            tools:text="1\u00B0 C" />
+
+        <TextView
+            android:id="@+id/max_temperature_title"
+            style="@style/text_style_regular"
+            android:layout_marginTop="8dp"
+            android:text="@string/max"
+            app:layout_constraintStart_toStartOf="@+id/min_temperature_title"
+            app:layout_constraintTop_toBottomOf="@+id/min_temperature_title" />
+
+        <TextView
+            android:id="@+id/max_temperature"
+            style="@style/text_style_regular"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/max_temperature_title"
+            app:layout_constraintStart_toEndOf="@+id/max_temperature_title"
+            app:temperatureFormatted="@{viewModel.weather.temperatureMax}"
+            tools:text="5\u00B0 C" />
+
+        <TextView
+            android:id="@+id/real_feel_title"
+            style="@style/text_style_regular"
+            android:layout_marginTop="8dp"
+            android:text="@string/real_feel"
+            app:layout_constraintStart_toStartOf="@+id/max_temperature_title"
+            app:layout_constraintTop_toBottomOf="@+id/max_temperature_title" />
+
+        <TextView
+            android:id="@+id/real_feel"
+            style="@style/text_style_regular"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/real_feel_title"
+            app:layout_constraintStart_toEndOf="@+id/real_feel_title"
+            app:temperatureFormatted="@{viewModel.weather.feelsLike}"
+            tools:text="1\u00B0 C" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.46"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/sunrise_title"
+            style="@style/text_style_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sunrise"
+            app:layout_constraintBaseline_toBaselineOf="@+id/min_temperature"
+            app:layout_constraintStart_toEndOf="@+id/divider" />
+
+        <TextView
+            android:id="@+id/sunrise_time"
+            style="@style/text_style_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/sunrise_title"
+            app:layout_constraintStart_toEndOf="@+id/sunrise_title"
+            app:sunriseFormatted="@{viewModel.weather}" />
+
+        <TextView
+            android:id="@+id/sunset_title"
+            style="@style/text_style_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sunset"
+            app:layout_constraintBaseline_toBaselineOf="@+id/max_temperature"
+            app:layout_constraintStart_toEndOf="@+id/divider" />
+
+        <TextView
+            android:id="@+id/sunset_time"
+            style="@style/text_style_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintBaseline_toBaselineOf="@+id/sunset_title"
+            app:layout_constraintEnd_toEndOf="@+id/sunrise_time"
+            app:layout_constraintStart_toEndOf="@+id/sunset_title"
+            app:sunsetFormatted="@{viewModel.weather}" />
+
+        <TextView
+            android:id="@+id/visibility_title"
+            style="@style/text_style_small"
+            android:layout_marginBottom="32dp"
+            android:text="@string/visibility"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/real_feel_title"
+            app:layout_constraintTop_toBottomOf="@+id/real_feel_title"
+            app:layout_constraintVertical_bias="1.0" />
+
+        <TextView
+            android:id="@+id/visibility"
+            style="@style/text_style_small"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            app:formatVisibility="@{viewModel.weather.visibility}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/visibility_title"
+            app:layout_constraintStart_toEndOf="@+id/visibility_title"
+            tools:text="200 meters" />
+
+        <TextView
+            android:id="@+id/wind_speed_title"
+            style="@style/text_style_small"
+            android:layout_marginBottom="8dp"
+            android:text="@string/wind_speed"
+            app:layout_constraintBottom_toTopOf="@+id/visibility_title"
+            app:layout_constraintStart_toStartOf="@+id/visibility_title" />
+
+        <TextView
+            android:id="@+id/wind_speed"
+            style="@style/text_style_small"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            app:formatWindSpeed="@{viewModel.weather.windSpeed}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/wind_speed_title"
+            app:layout_constraintStart_toEndOf="@+id/wind_speed_title"
+            tools:text="15 meters per second" />
+
+        <TextView
+            android:id="@+id/humidity_title"
+            style="@style/text_style_small"
+            android:layout_marginBottom="8dp"
+            android:text="@string/humidity"
+            app:layout_constraintBottom_toTopOf="@+id/wind_speed_title"
+            app:layout_constraintStart_toStartOf="@+id/wind_speed_title" />
+
+        <TextView
+            android:id="@+id/humidity"
+            style="@style/text_style_small"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            app:formatHumidity="@{viewModel.weather.humidity}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/humidity_title"
+            app:layout_constraintStart_toEndOf="@+id/humidity_title"
+            tools:text="95%" />
+
+        <TextView
+            android:id="@+id/pressure_title"
+            style="@style/text_style_small"
+            android:layout_marginBottom="8dp"
+            android:text="@string/pressure"
+            app:layout_constraintBottom_toTopOf="@+id/humidity_title"
+            app:layout_constraintStart_toStartOf="@+id/humidity_title" />
+
+        <TextView
+            android:id="@+id/pressure"
+            style="@style/text_style_small"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            app:formatPressure="@{viewModel.weather.pressure}"
+            app:layout_constraintBaseline_toBaselineOf="@+id/pressure_title"
+            app:layout_constraintStart_toEndOf="@+id/pressure_title"
+            tools:text="1015 mmHg" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

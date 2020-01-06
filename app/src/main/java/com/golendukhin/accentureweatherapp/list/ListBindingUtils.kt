@@ -15,6 +15,6 @@ fun TextView.setLocalDate(item: Weather?) {
 @BindingAdapter("temperatueFormatted")
 fun TextView.setCelsius(item: Weather?) {
     item?.let {
-        text = "${it.temperatureCelsius}\u2103"
+        text = "${it.temperatureCelsius?.toInt()}\u2103"
     }
 }

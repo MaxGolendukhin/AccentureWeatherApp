@@ -3,12 +3,12 @@ package com.golendukhin.accentureweatherapp.network
 import com.squareup.moshi.Json
 
 data class WeatherResponse (
-    val name: String,
+    @Json(name = "name") val city: String,
     val wind: Wind,
     val main: Main,
     val sys: Sys,
     val visibility: Int,
-    val weather: List<Weather>
+    @Json(name = "timezone") val timeZone: Long
 )
 
 data class Sys (
@@ -27,9 +27,4 @@ data class Main (
 
 data class Wind (
     val speed: Double
-)
-
-data class Weather (
-    val main: String,
-    val description: String
 )

@@ -25,7 +25,7 @@ abstract class WeatherDataBase : RoomDatabase() {
                     WeatherDataBase::class.java,
                     "weather_database"
                 )
-                    .addCallback(WordDatabaseCallback(scope))
+                    //.addCallback(WordDatabaseCallback(scope))
                     .build()
                 INSTANCE = instance
                 // return instance
@@ -38,7 +38,7 @@ abstract class WeatherDataBase : RoomDatabase() {
                 super.onOpen(db)
                 INSTANCE?.let { database ->
                     scope.launch(Dispatchers.IO) {
-                        populateDatabase(database.weatherDao)
+                        //populateDatabase(database.weatherDao)
                     }
                 }
             }
@@ -48,15 +48,15 @@ abstract class WeatherDataBase : RoomDatabase() {
          * Populate the database in a new coroutine.
          * If you want to start with more words, just add them.
          */
-        fun populateDatabase(weatherDao: WeatherDao) {
-            Log.i("Database", "populated")
-            weatherDao.deleteAll()
-            weatherDao.insert(Weather(temperatureCelsius = -20.0))
-            weatherDao.insert(Weather(temperatureCelsius = -30.0))
-            weatherDao.insert(Weather(temperatureCelsius = -30.0))
-            weatherDao.insert(Weather(temperatureCelsius = -50.0))
-            weatherDao.insert(Weather(temperatureCelsius = -20.0))
-            weatherDao.insert(Weather(temperatureCelsius = -18.0))
-        }
+//        fun populateDatabase(weatherDao: WeatherDao) {
+//            Log.i("Database", "populated")
+//            weatherDao.deleteAll()
+//            weatherDao.insert(Weather(temperatureCelsius = -20.0))
+//            weatherDao.insert(Weather(temperatureCelsius = -30.0))
+//            weatherDao.insert(Weather(temperatureCelsius = -30.0))
+//            weatherDao.insert(Weather(temperatureCelsius = -50.0))
+//            weatherDao.insert(Weather(temperatureCelsius = -20.0))
+//            weatherDao.insert(Weather(temperatureCelsius = -18.0))
+//        }
     }
 }
