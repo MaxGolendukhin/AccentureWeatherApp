@@ -1,14 +1,13 @@
 package com.golendukhin.accentureweatherapp.network
 
 import com.squareup.moshi.Json
-import com.squareup.moshi.JsonClass
 
 data class WeatherResponse (
     val name: String,
     val wind: Wind,
     val main: Main,
     val sys: Sys,
-    val visibility: Integer,
+    val visibility: Int,
     val weather: List<Weather>
 )
 

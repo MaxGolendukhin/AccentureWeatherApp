@@ -1,15 +1,11 @@
 package com.golendukhin.accentureweatherapp.database
 
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import com.golendukhin.accentureweatherapp.ResponseStatus
 import com.golendukhin.accentureweatherapp.network.WeatherApi
 import kotlinx.coroutines.*
 import retrofit2.HttpException
 import java.text.SimpleDateFormat
-import java.util.concurrent.ExecutorService
-import java.util.concurrent.Executors
-import java.util.concurrent.Future
 
 class Repository(private val weatherDao: WeatherDao) {
     val weatherData: LiveData<List<Weather>> = weatherDao.getOrderedData()
@@ -42,5 +38,9 @@ class Repository(private val weatherDao: WeatherDao) {
             }
         }
         return responseStatus
+    }
+
+    fun getItemById(id: Long): LiveData<Weather> {
+        return weatherDao.getItemById(id)
     }
 }

@@ -7,13 +7,14 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.golendukhin.accentureweatherapp.R
 import com.golendukhin.accentureweatherapp.ResponseStatus
 import com.golendukhin.accentureweatherapp.database.Weather
 import com.golendukhin.accentureweatherapp.database.WeatherDataBase
 import com.golendukhin.accentureweatherapp.databinding.FragmentWeatherListBinding
-
 
 class WeatherListFragment : Fragment() {
     private val weatherListViewModel: WeatherListViewModel by lazy {
@@ -22,22 +23,19 @@ class WeatherListFragment : Fragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val binding: FragmentWeatherListBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_weather_list, container, false)
-        val application = requireNotNull(this.activity).application
-//        val weatherDao = WeatherDataBase.getInstance(application).weatherDao
-
-
-
-//        val weatherListFragmentFactoryFactory = WeatherListViewModelFactory(weatherDao, application)
-//        val weatherListModel = ViewModelProviders.of(this, weatherListFragmentFactoryFactory).get(WeatherListViewModel::class.java)
-
-
-
-
         binding.lifecycleOwner = this
         binding.weatherListViewModel = weatherListViewModel
 
-        val adapter = WeatherListFragmentAdapter(WeatherItemClickListener { id ->
-            Toast.makeText(context, "button pressed", Toast.LENGTH_LONG).show()
+        val adapter = WeatherListFragmentAdapter(WeatherItemClickListener {
+            weatherListViewModel.displayDetails(it)
+        })
+
+        weatherListViewModel.navigateToDetails.observe(this, Observer {
+            it?.let {
+                this.findNavController()
+                    .navigate(WeatherListFragmentDirections.actionListFragmentToDetailFragment(it))
+                weatherListViewModel.displayDetailsComplete()
+            }
         })
 
         weatherListViewModel.getData().observe(viewLifecycleOwner, Observer {

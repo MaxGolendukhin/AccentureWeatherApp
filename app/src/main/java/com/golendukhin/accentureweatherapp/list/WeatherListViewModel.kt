@@ -3,6 +3,7 @@ package com.golendukhin.accentureweatherapp.list
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.golendukhin.accentureweatherapp.ResponseStatus
 import com.golendukhin.accentureweatherapp.database.Repository
@@ -13,8 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 
-//class WeatherListViewModel(val weatherDao: WeatherDao, application: Application) : AndroidViewModel(application)  {
-    class WeatherListViewModel(application: Application) : AndroidViewModel(application)  {
+class WeatherListViewModel(application: Application) : AndroidViewModel(application)  {
     private val repository: Repository
     private var viewModelJob = Job()
     private val coroutineScope = CoroutineScope(Dispatchers.Main + viewModelJob)
@@ -37,5 +37,20 @@ import kotlinx.coroutines.launch
 
     fun update(apiKey: String): ResponseStatus {
         return repository.update(apiKey, coroutineScope)
+    }
+
+    private val _navigateToDetails = MutableLiveData<Long>()
+    val navigateToDetails: LiveData<Long>
+        get() = _navigateToDetails
+
+    fun displayDetails(id: Long) {
+        _navigateToDetails.value = id
+    }
+
+    /**
+     * After the navigation has taken place, make sure navigateToSelectedProperty is set to null
+     */
+    fun displayDetailsComplete() {
+        _navigateToDetails.value = null
     }
 }

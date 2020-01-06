@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.golendukhin.accentureweatherapp.database.Weather
 import com.golendukhin.accentureweatherapp.databinding.WeatherItemBinding
 
-class WeatherListFragmentAdapter(val weatherItemClickListener: WeatherItemClickListener) : ListAdapter<Weather, WeatherListFragmentAdapter.ViewHolder>(WeatherDiffCallBack()) {
+class WeatherListFragmentAdapter(private val weatherItemClickListener: WeatherItemClickListener) : ListAdapter<Weather, WeatherListFragmentAdapter.ViewHolder>(WeatherDiffCallBack()) {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = getItem(position)
         holder.bind(weatherItemClickListener, item)
@@ -18,7 +18,7 @@ class WeatherListFragmentAdapter(val weatherItemClickListener: WeatherItemClickL
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor(val binding: WeatherItemBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder private constructor(private val binding: WeatherItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(weatherItemClickListener: WeatherItemClickListener, item: Weather) {
             binding.weather = item
             binding.clickListener = weatherItemClickListener

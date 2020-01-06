@@ -21,7 +21,7 @@ interface WeatherDao {
     fun getOrderedData(): LiveData<List<Weather>>
 
     @Query("SELECT * FROM weather_table WHERE id = :id")
-    fun getItem(id: Long): LiveData<Weather>
+    fun getItemById(id: Long): LiveData<Weather>
 
     @Query("SELECT * FROM weather_table ORDER BY id DESC LIMIT 1")
     suspend fun getLastItem(): Weather
