@@ -3,6 +3,7 @@ package com.golendukhin.accentureweatherapp.database
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.squareup.moshi.Json
 import java.time.format.DateTimeFormatter
 import java.time.format.FormatStyle
 import java.util.*
@@ -16,8 +17,5 @@ data class Weather(
     var saveDate: Long = System.currentTimeMillis(),
 
     @ColumnInfo(name = "temperature_Celsius")
-    var temperatureCelsius: Int = 0
+    var temperatureCelsius: Double? = .0
 )
-//{
-//    fun getLocaleDate(): String = Date(saveDate).toLocaleString()
-//}

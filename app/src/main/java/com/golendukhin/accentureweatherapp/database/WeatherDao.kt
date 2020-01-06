@@ -9,7 +9,7 @@ interface WeatherDao {
     fun insert(weather: Weather)
 
     @Update(onConflict = OnConflictStrategy.REPLACE)
-    fun update(weather: Weather)
+    suspend fun update(weather: Weather)
 
     @Delete
     fun delete(weather: Weather)
@@ -17,9 +17,12 @@ interface WeatherDao {
     @Query("DELETE FROM weather_table")
     fun deleteAll()
 
-    @Query("SELECT * FROM weather_table ORDER BY id")
+    @Query("SELECT * FROM weather_table ORDER BY id DESC")
     fun getOrderedData(): LiveData<List<Weather>>
 
     @Query("SELECT * FROM weather_table WHERE id = :id")
     fun getItem(id: Long): LiveData<Weather>
+
+    @Query("SELECT * FROM weather_table ORDER BY id DESC LIMIT 1")
+    suspend fun getLastItem(): Weather
 }

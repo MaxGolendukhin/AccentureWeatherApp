@@ -18,7 +18,7 @@ class WeatherListFragmentAdapter(val weatherItemClickListener: WeatherItemClickL
         return ViewHolder.from(parent)
     }
 
-    class ViewHolder private constructor(val binding: WeatherItemBinding): RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder private constructor(val binding: WeatherItemBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(weatherItemClickListener: WeatherItemClickListener, item: Weather) {
             binding.weather = item
             binding.clickListener = weatherItemClickListener
