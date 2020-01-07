@@ -21,15 +21,20 @@ class WeatherListFragment : Fragment() {
         ViewModelProviders.of(this).get(WeatherListViewModel::class.java)
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding: FragmentWeatherListBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_weather_list, container, false)
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        val binding: FragmentWeatherListBinding =
+            DataBindingUtil.inflate(inflater,
+                R.layout.fragment_weather_list,
+                container,
+                false)
         binding.lifecycleOwner = this
         binding.weatherListViewModel = weatherListViewModel
 
         val adapter = WeatherListFragmentAdapter(WeatherItemClickListener {
             weatherListViewModel.displayDetails(it)
         })
-
         weatherListViewModel.navigateToDetails.observe(this, Observer {
             it?.let {
                 this.findNavController()
@@ -37,19 +42,15 @@ class WeatherListFragment : Fragment() {
                 weatherListViewModel.displayDetailsComplete()
             }
         })
-
         weatherListViewModel.getData().observe(viewLifecycleOwner, Observer {
             it?.let {
                 adapter.submitList(it)
             }
         })
-
         binding.weatherList.adapter = adapter
         binding.weatherList.layoutManager = LinearLayoutManager(activity)
 
         setHasOptionsMenu(true)
-
-
 
         return binding.root
     }
@@ -63,10 +64,17 @@ class WeatherListFragment : Fragment() {
         when(item.itemId) {
             R.id.save_menu_item -> {
                 val pref = context?.getSharedPreferences(PREFERENCES_NAME, Context.MODE_PRIVATE)
-                var responseStatus = weatherListViewModel.update(getString(R.string.API_key), pref?.getString(PREFERENCES_CITY_KEY, "Riga"))
+                var responseStatus = weatherListViewModel.update(getString(R.string.API_key),
+                    pref?.getString(PREFERENCES_CITY_KEY, "Riga"))
                 when(responseStatus) {
-                    ResponseStatus.HTTP_CONNECTION_ERROR -> Toast.makeText(context, "Problems with internet connection", Toast.LENGTH_LONG).show()
-                    ResponseStatus.ANOTHER_ERROR -> Toast.makeText(context, "Error with obtaining data", Toast.LENGTH_LONG).show()
+                    ResponseStatus.HTTP_CONNECTION_ERROR ->
+                        Toast.makeText(context,
+                            "Problems with internet connection",
+                            Toast.LENGTH_LONG).show()
+                    ResponseStatus.ANOTHER_ERROR ->
+                        Toast.makeText(context,
+                            "Error with obtaining data",
+                            Toast.LENGTH_LONG).show()
                 }
             }
             R.id.preferences_menu_item -> this.findNavController().navigate(WeatherListFragmentDirections.actionListFragmentToPreferencesFragment())

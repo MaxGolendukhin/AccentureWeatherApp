@@ -16,14 +16,16 @@ fun TextView.setLocalDateTime(item: Weather?) {
 @BindingAdapter("sunriseFormatted")
 fun TextView.setSunriseTime(weather: Weather?) {
     weather?.let {
-        text = SimpleDateFormat.getTimeInstance().format(((weather?.sunrise ?: 0) + (weather?.timeZone ?: 0)) * 1000)
+        text = SimpleDateFormat.getTimeInstance().
+            format(((weather?.sunrise ?: 0) + (weather?.timeZone ?: 0)) * 1000)
     }
 }
 
 @BindingAdapter("sunsetFormatted")
 fun TextView.setSunsetTime(weather: Weather?) {
     weather?.let {
-        text = SimpleDateFormat.getTimeInstance().format(((weather?.sunset ?: 0) + (weather?.timeZone ?: 0)) * 1000)
+        text = SimpleDateFormat.getTimeInstance().
+            format(((weather?.sunset ?: 0) + (weather?.timeZone ?: 0)) * 1000)
     }
 }
 

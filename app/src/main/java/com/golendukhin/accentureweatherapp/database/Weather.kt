@@ -3,11 +3,6 @@ package com.golendukhin.accentureweatherapp.database
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.golendukhin.accentureweatherapp.network.WeatherResponse
-import com.squareup.moshi.Json
-import java.time.format.DateTimeFormatter
-import java.time.format.FormatStyle
-import java.util.*
 
 @Entity(tableName = "weather_table")
 data class Weather(

@@ -10,16 +10,19 @@ import androidx.lifecycle.ViewModelProviders
 import com.golendukhin.accentureweatherapp.R
 import com.golendukhin.accentureweatherapp.databinding.FragmentDetailBinding
 
-
 class DetailFragment : Fragment() {
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val binding: FragmentDetailBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false)
+    override fun onCreateView(inflater: LayoutInflater,
+                              container: ViewGroup?,
+                              savedInstanceState: Bundle?): View? {
+        val binding: FragmentDetailBinding =
+            DataBindingUtil.inflate(inflater, R.layout.fragment_detail, container, false)
         val application = requireNotNull(activity).application
         binding.lifecycleOwner = this
 
         val id = DetailFragmentArgs.fromBundle(arguments!!).id
         val detailViewModelFactory = DetailViewModelFactory(id, application)
-        val detailViewModel = ViewModelProviders.of(this, detailViewModelFactory).get(DetailViewModel::class.java)
+        val detailViewModel =
+            ViewModelProviders.of(this, detailViewModelFactory).get(DetailViewModel::class.java)
         binding.viewModel = detailViewModel
 
         return binding.root

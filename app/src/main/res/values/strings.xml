@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">AccentureWeatherApp</string>
-
     <string name="weather_list_fragment">WeatherListFragment</string>
     <string name="temperature_celsius">%1$d\u00B0 C</string>
     <string name="temperature">Temperature:</string>

@@ -11,12 +11,12 @@
     </data>
 
     <androidx.recyclerview.widget.RecyclerView
-        tools:context="com.golendukhin.accentureweatherapp.list.WeatherListFragment"
         android:id="@+id/weather_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="parent" />
+        app:layout_constraintTop_toBottomOf="parent"
+        tools:context="com.golendukhin.accentureweatherapp.list.WeatherListFragment" />
 </layout>
