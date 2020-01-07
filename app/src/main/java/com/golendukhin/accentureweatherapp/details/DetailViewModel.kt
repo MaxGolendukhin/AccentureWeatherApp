@@ -11,7 +11,7 @@ import com.golendukhin.accentureweatherapp.database.WeatherDataBase
 class DetailViewModel(id: Long, application: Application) : AndroidViewModel(application)  {
     private val repository: Repository
 
-   val weather: LiveData<Weather>
+    val weather: LiveData<Weather>
 
     init {
         val weatherDao = WeatherDataBase.getInstance(application, viewModelScope).weatherDao

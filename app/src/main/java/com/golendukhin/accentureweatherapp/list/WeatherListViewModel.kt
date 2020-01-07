@@ -16,8 +16,8 @@ import kotlinx.coroutines.launch
 
 class WeatherListViewModel(application: Application) : AndroidViewModel(application)  {
     private val repository: Repository
-    private var viewModelJob = Job()
-    private val coroutineScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+//    private var viewModelJob = Job()
+//    private val coroutineScope = CoroutineScope(Dispatchers.Main + viewModelJob)
     private val weatherData: LiveData<List<Weather>>
 
     init {
@@ -30,10 +30,10 @@ class WeatherListViewModel(application: Application) : AndroidViewModel(applicat
         return weatherData
     }
 
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }
+//    override fun onCleared() {
+//        super.onCleared()
+//        viewModelJob.cancel()
+//    }
 
     fun update(apiKey: String, city: String?): ResponseStatus {
         return repository.update(apiKey, city)
