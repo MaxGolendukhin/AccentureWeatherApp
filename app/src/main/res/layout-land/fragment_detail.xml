@@ -22,7 +22,7 @@
             android:layout_marginStart="36dp"
             android:layout_marginLeft="36dp"
             android:layout_marginTop="24dp"
-            android:text="Riga"
+            android:text="@{viewModel.weather.city}"
             android:textSize="36sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/divider"

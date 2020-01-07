@@ -17,4 +17,6 @@
     <string name="sunset">Sunset:</string>
     <string name="sunrise">Sunrise:</string>
     <string name="pressure">Pressure:</string>
+    <string name="preferences">preferences</string>
+    <string name="submit">submit</string>
 </resources>

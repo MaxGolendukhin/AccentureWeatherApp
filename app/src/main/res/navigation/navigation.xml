@@ -3,7 +3,7 @@
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
   ~ you may not use this file except in compliance with the License.
-  ~ You may obtain a copy of the License at
+  ~ You may obtain fragment_preferences copy of the License at
   ~
   ~     http://www.apache.org/licenses/LICENSE-2.0
   ~
@@ -35,9 +35,16 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
-
+        <action
+            android:id="@+id/action_list_fragment_to_preferences_fragment"
+            app:destination="@id/preferences_fragment"
+            app:enterAnim="@anim/slide_in_left"
+            app:exitAnim="@anim/slide_out_right"
+            app:popEnterAnim="@anim/slide_in_right"
+            app:popExitAnim="@anim/slide_out_left"
+            app:popUpTo="@+id/weather_list_fragment"
+            app:popUpToInclusive="false" />
     </fragment>
-
 
     <fragment
         android:id="@+id/detail_fragment"
@@ -49,4 +56,17 @@
             app:argType="long"/>
     </fragment>
 
+    <fragment
+        android:id="@+id/preferences_fragment"
+        android:name="com.golendukhin.accentureweatherapp.PreferencesFragment"
+        android:label="preferences_fragment"
+        tools:layout="@layout/fragment_preferences">
+        <action
+            android:id="@+id/action_preferences_fragment_to_weather_list_fragment"
+            app:destination="@id/weather_list_fragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
 </navigation>

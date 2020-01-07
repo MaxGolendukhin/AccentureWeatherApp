@@ -35,8 +35,8 @@ class WeatherListViewModel(application: Application) : AndroidViewModel(applicat
         viewModelJob.cancel()
     }
 
-    fun update(apiKey: String): ResponseStatus {
-        return repository.update(apiKey, coroutineScope)
+    fun update(apiKey: String, city: String?): ResponseStatus {
+        return repository.update(apiKey, city)
     }
 
     private val _navigateToDetails = MutableLiveData<Long>()
@@ -47,10 +47,20 @@ class WeatherListViewModel(application: Application) : AndroidViewModel(applicat
         _navigateToDetails.value = id
     }
 
-    /**
-     * After the navigation has taken place, make sure navigateToSelectedProperty is set to null
-     */
     fun displayDetailsComplete() {
         _navigateToDetails.value = null
     }
+
+
+//    private val _navigateToPreferences = MutableLiveData<String>()
+//    val navigateToPreferences: LiveData<String>
+//        get() = _navigateToPreferences
+//
+//    fun displayPreferences(city: String) {
+//        _navigateToPreferences.value = city
+//    }
+//
+//    fun displayPreferencesComplete() {
+//        _navigateToPreferences.value = null
+//    }
 }

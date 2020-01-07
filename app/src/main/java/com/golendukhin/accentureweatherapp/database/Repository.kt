@@ -10,11 +10,11 @@ import java.text.SimpleDateFormat
 class Repository(private val weatherDao: WeatherDao) {
     val weatherData: LiveData<List<Weather>> = weatherDao.getOrderedData()
 
-    fun update(apiKey: String, coroutineScope: CoroutineScope): ResponseStatus {
+    fun update(apiKey: String, city: String?): ResponseStatus {
         var responseStatus = ResponseStatus.OK
         runBlocking {
             try {
-                val weatherFetched = WeatherApi.retrofitService.getWeather(q = "Riga", appid = apiKey)
+                val weatherFetched = WeatherApi.retrofitService.getWeather(q = city ?: "Riga", appid = apiKey)
                 if (weatherFetched.isSuccessful) {
                     val body = weatherFetched.body()
                     val currentDate = SimpleDateFormat.getDateInstance().format(System.currentTimeMillis()).toString()
